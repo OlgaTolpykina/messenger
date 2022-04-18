@@ -1,6 +1,7 @@
 {
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
+  "editor.printWidth": 120,
   "files.eol": "\n",
   "search.exclude": {
     ".vscode": true,

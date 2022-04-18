@@ -4,8 +4,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@models*": ["src/models*"],
-      "@mocks*": ["src/mocks*"]
+      "@models*": ["src/app/models*"],
+      "@mocks*": ["src/app/mocks*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

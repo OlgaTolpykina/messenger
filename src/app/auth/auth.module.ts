@@ -1,0 +1,11 @@
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
+import { AuthRoutingModule } from './auth-routing.module';
+import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component';
+
+@NgModule({
+  declarations: [SignInPageComponent],
+  imports: [CommonModule, AuthRoutingModule],
+})
+export class AuthModule {}
