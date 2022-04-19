@@ -1,4 +1,5 @@
 import { tap } from 'rxjs';
+import { UserService } from 'src/app/core/service/user.service';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,10 +14,9 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   register(payload: RegisterRequestModel) {
-    console.log(payload);
     return this.http
       .post<AuthResponseModel>('/auth/register', payload)
       .pipe(tap((response) => this.handleResponse(response)));
@@ -30,5 +30,6 @@ export class AuthService {
 
   private handleResponse(response: AuthResponseModel) {
     localStorage.setItem('token', response.token);
+    this.userService.setCurrentUser(response.user);
   }
 }
