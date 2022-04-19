@@ -5,29 +5,30 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-sign-in-page',
-  templateUrl: './sign-in-page.component.html',
-  styleUrls: ['./sign-in-page.component.scss'],
+  selector: 'app-sign-up-page',
+  templateUrl: './sign-up-page.component.html',
+  styleUrls: ['./sign-up-page.component.scss'],
 })
-export class SignInPageComponent implements OnInit {
+export class SignUpPageComponent implements OnInit {
   formGroup: FormGroup | null = null;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       username: ['', Validators.required],
+      mail: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
-  onSubmit() {
+  register() {
     if (this.formGroup?.valid) {
-      this.authService.login(this.formGroup.value).subscribe(() => {
+      this.auth.register(this.formGroup.value).subscribe(() => {
         this.router.navigateByUrl('/');
       });
     }

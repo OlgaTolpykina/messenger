@@ -1,18 +1,21 @@
 <div class="d-flex justify-content-center" *ngIf="formGroup">
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3">
-    <form [formGroup]="formGroup" (submit)="onSubmit()">
+    <form [formGroup]="formGroup" class="" (submit)="register()">
+      <input
+        formControlName="mail"
+        class="form-control mt-2"
+        placeholder="Email"
+      />
       <input
         formControlName="username"
         class="form-control mt-2"
         placeholder="Username"
-        name="username"
       />
       <input
         formControlName="password"
         class="form-control mt-2"
         type="password"
         placeholder="Password"
-        name="password"
       />
       <button type="submit" class="btn btn-info mt-2">Submit</button>
     </form>

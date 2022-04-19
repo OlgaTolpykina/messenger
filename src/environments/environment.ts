@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'https://messenger-workshop.herokuapp.com/api/v1/',
 };
 
 /*

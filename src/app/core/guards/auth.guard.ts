@@ -1,13 +1,15 @@
-import { Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { CanActivate, CanLoad, Router, UrlTree } from '@angular/router';
+
+import { UserService } from '../service/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   canActivate():
     | Observable<boolean | UrlTree>
@@ -26,10 +28,11 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   handle() {
-    const isNavigationAllowed = true;
-
-    return (
-      isNavigationAllowed || this.router.createUrlTree(['/', 'auth', 'sign-in'])
+    return this.userService.getUserObservable().pipe(
+      take(1),
+      map((user) =>
+        user !== null ? true : this.router.parseUrl('/auth/sign-up')
+      )
     );
   }
 }
